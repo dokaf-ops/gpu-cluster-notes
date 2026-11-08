@@ -33,3 +33,5 @@ working notes from ~14 months on a dedicated training cluster. contract reliabil
 - is there a better way to detect fabric degradation before it shows up in job metrics?
 - checkpoint compression tradeoffs — we're not using it, should we be?
 - TODO: dig into whether the baseboard thermal reporting issue is firmware or sensor
+
+`gpu_fail_classifier.py` — stdin filter that classifies GPU failure log lines (dmesg, syslog, DCGM) into triage buckets: fatal vs warning-tier XIDs, ECC correctable/uncorrectable, row-remap exhaustion, NVLink CRC and replay errors, fabric faults, thermal throttling, NCCL timeouts. No dependencies, just pipe logs in. Written for the 2-am page where you need to know in ten seconds whether a node is coming back or needs a drain-and-replace.
